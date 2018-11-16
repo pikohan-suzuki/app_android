@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="c1">C1</string>
+    <string name="d1">D1</string>
+    <string name="e1">E1</string>
+    <string name="f1">F1</string>
+    <string name="g1">G1</string>
+    <string name="a2">A2</string>
+    <string name="b2">B2</string>
+    <string name="c2">C2</string>
+    <string name="d2">D2</string>
+    <string name="e2">E2</string>
+    <string name="f2">F2</string>
+    <string name="g2">G2</string>
+    <string name="a3">A3</string>
+    <string name="b3">B3</string>
+    <string name="c3">C3</string>
+</resources>
