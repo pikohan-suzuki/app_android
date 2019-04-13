@@ -13,33 +13,40 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 class MainActivity : AppCompatActivity() {
-    var menuFlg: Boolean = false
+    var menuOpenFlg: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
-        var buttons: Array<Button?> = arrayOfNulls(5)
-        buttons.set(0, findViewById(R.id.button1))
-        buttons.set(1, findViewById(R.id.button2))
-        buttons.set(2, findViewById(R.id.button3))
-        buttons.set(3, findViewById(R.id.button4))
-        buttons.set(4, findViewById(R.id.button5))
+        val buttons: Array<Button?> = arrayOfNulls(5)
+        buttons[0] = findViewById(R.id.button1)
+        buttons[1] = findViewById(R.id.button2)
+        buttons[2] = findViewById(R.id.button3)
+        buttons[3] = findViewById(R.id.button4)
+        buttons[4] = findViewById(R.id.button5)
         val menuLayout: FrameLayout = findViewById(R.id.menuLayout)
         val textView: TextView = findViewById(R.id.test_textView)
         val testButton: Button = findViewById(R.id.test_Button)
 
-        testButton.setOnClickListener(View.OnClickListener {
-            if (!menuFlg)
-                animateOpenMenu(buttons, menuLayout)
-            else
-                animateTranslateCloneMenu(buttons, menuLayout)
 
-        })
+        val clickListener = View.OnClickListener {
+            when (it) {
+                menuLayout -> {
+                    if (menuOpenFlg)
+                        animateAlphaCloseMenu(menuLayout)
+                }
+                testButton -> {
+                    if (!menuOpenFlg)
+                        animateOpenMenu(buttons, menuLayout)
+                    else
+                        animateTranslateCloneMenu(buttons, menuLayout)
+                }
+            }
+        }
 
-        menuLayout.setOnClickListener(View.OnClickListener {
-            animateAlphaCloseMenu(menuLayout)
-        })
+        menuLayout.setOnClickListener(clickListener)
+        testButton.setOnClickListener(clickListener)
     }
 
     fun animateOpenMenu(buttons: Array<Button?>, menuLayout: FrameLayout) {
@@ -63,11 +70,12 @@ class MainActivity : AppCompatActivity() {
         visiable(menuLayout)
         for (i in array.indices) {
             visiable(buttons[i])
-            val objectAnimator: ObjectAnimator = ObjectAnimator.ofPropertyValuesHolder(buttons[i], array[i][0], array[i][1])
+            val objectAnimator: ObjectAnimator =
+                ObjectAnimator.ofPropertyValuesHolder(buttons[i], array[i][0], array[i][1])
             objectAnimator.setDuration(time)
             objectAnimator.start()
         }
-        menuFlg = true
+        menuOpenFlg = true
     }
 
     fun animateTranslateCloneMenu(buttons: Array<Button?>, menuLayout: FrameLayout) {
@@ -86,7 +94,8 @@ class MainActivity : AppCompatActivity() {
         array[4][1] = PropertyValuesHolder.ofFloat("translationY", -radius * sin(1 * PI).toFloat(), 0f)
         for (i in array.indices) {
             visiable(buttons[i])
-            val objectAnimator: ObjectAnimator = ObjectAnimator.ofPropertyValuesHolder(buttons[i], array[i][0], array[i][1])
+            val objectAnimator: ObjectAnimator =
+                ObjectAnimator.ofPropertyValuesHolder(buttons[i], array[i][0], array[i][1])
             objectAnimator.setDuration(time)
             objectAnimator.start()
         }
@@ -100,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         objectAnimator.setDuration(time)
         objectAnimator.start()
 //        gone(menuLayout)
-        menuFlg = false
+        menuOpenFlg = false
     }
 
     fun visiable(view: View?) {
