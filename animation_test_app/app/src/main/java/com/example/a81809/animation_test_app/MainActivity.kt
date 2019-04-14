@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         buttons[3] = findViewById(R.id.button4)
         buttons[4] = findViewById(R.id.button5)
         val menuLayout: FrameLayout = findViewById(R.id.menuLayout)
-        val textView: TextView = findViewById(R.id.test_textView)
         val testButton: Button = findViewById(R.id.test_Button)
 
 
