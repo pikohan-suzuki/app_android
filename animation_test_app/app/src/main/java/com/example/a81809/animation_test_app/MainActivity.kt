@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
+import android.widget.ViewFlipper
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -17,6 +19,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        val viewFlipper = findViewById<ViewFlipper>(R.id.viewFlipper)
 
 
         val buttons: Array<Button?> = arrayOfNulls(5)
@@ -123,5 +128,12 @@ class MainActivity : AppCompatActivity() {
             if (view.visibility == View.VISIBLE)
                 view.visibility = View.GONE
         }
+    }
+
+    fun showNext(view: View?){
+        viewFlipper.showNext()
+    }
+    fun showPrevious(view: View?){
+        viewFlipper.showPrevious()
     }
 }
