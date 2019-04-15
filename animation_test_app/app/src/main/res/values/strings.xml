@@ -3,4 +3,6 @@
     <string name="receiver_name_textView">TextView</string>
     <string name="receiver_address_textView">TextView</string>
     <string name="receiver_icon">receiver_icon</string>
+    <string name="previous_button">Previous</string>
+    <string name="next_button">Next</string>
 </resources>
